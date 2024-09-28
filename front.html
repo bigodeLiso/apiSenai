@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="COLABORADOR">
+        <h1>COLABORADORES</h1>
+        <p id="colaborador"></p>
+
+        <input type="text" id="nome">
+        <input type="text" id="senha">
+
+        <button onclick="criarColaborador()">
+            Cadastrar
+        </button>
+
+        <button onclick="listarColaboradores()">
+            Listar colaboradores
+        </button>
+    </div>
+
+    <div class="EPIS">
+        <h1>EPIS</h1>
+        <p id="equipamento"></p>
+
+        <input type="text" id="nome_eqp">
+        <input type="text" id="descricao" name="descrição">
+
+        <button onclick="criarEpi()">
+            Cadastrar Equipamento
+        </button>
+
+        <button onclick="listarEpis()">
+            Listar Epis
+        </button>
+    </div>
+
+    <script>
+        //COLABORADORES
+        async function listarColaboradores() {
+            const resposta = await fetch('http://localhost:3333/colaboradores', {
+                method: 'GET'
+            })
+            const colaboradores = await resposta.json();
+            console.log(colaboradores);
+
+            const elementoP = document.getElementById('colaborador');
+            elementoP.innerHTML = colaboradores[0].nome;
+        }
+        listarColaboradores();
+
+        async function criarColaborador() {
+            const colaborador = {
+                nome: document.getElementById('nome').value,
+                senha: document.getElementById('senha').value
+            }
+
+            const resposta = await fetch('http://localhost:3333/colaborador', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(colaborador)
+            })
+
+            const colaboradores = await resposta.json();
+            console.log(colaboradores);
+        }
+
+        //EPIS EQUIPAMENTOS
+        async function listarEpis() {
+            const resposta = await fetch('http://localhost:3333/epis', {
+                method: 'GET'
+            })
+            const eqp = await resposta.json();
+            console.log(eqp);
+
+            const elementoP = document.getElementById('equipamento');
+            elementoP.innerHTML = eqp[0].nome_eqp;
+        }
+        listarEpis();
+
+        async function criarEpi() {
+            const eqp = {
+                nome: document.getElementById('nome_eqp').value,
+                descricao: document.getElementById('descricao').value
+            }
+
+            const resposta = await fetch('http://localhost:3333/epi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(eqp)
+            })
+
+            const equipa = await resposta.json();
+            console.log(equipa);
+        }
+
+
+    </script>
+</body>
+
+</html>

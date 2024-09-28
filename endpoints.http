@@ -1,0 +1,69 @@
+######## COLABORADORES
+###
+
+GET http://localhost:3333/colaboradores
+
+###
+
+GET http://localhost:3333/colaborador/ORELHA 2
+
+###
+
+POST http://localhost:3333/colaborador
+Content-Type: application/json
+
+{
+    "nome": "ORELHA",
+    "senha": "12345"
+}
+
+###
+
+PUT http://localhost:3333/colaborador/ba9374e1-e38e-4c30-8b86-1ca2d0e6eace
+Content-Type: application/json
+
+{
+    "nome": "JANELA",
+    "senha": "45"
+}
+
+###
+
+DELETE http://localhost:3333/colaborador/a885d6b5-d440-4b19-8600-ba71c8ed12f8
+
+###
+
+######## EPIS
+###
+
+GET http://localhost:3333/epis
+
+###
+
+POST http://localhost:3333/epi
+Content-Type: application/json
+
+{
+    "nome": "Martelo",
+    "descricao": "Martelo preto com cabo branco",
+    "tipo": "Defesa",
+    "emprestado": false,
+    "colaborador_que_pegou_emprestado": "Pablo"
+}
+
+###
+
+PUT http://localhost:3333/epi/2d4381af-add4-4c56-a65d-78cf644a7309
+Content-Type: application/json
+
+{
+    "nome": "Óculos Atualizado",
+    "descricao": "Óculos de segurança atualizado",
+    "tipo": "Proteção",
+    "emprestado": false,
+    "colaborador_que_pegou_emprestado": "Danilo"
+}
+
+###
+
+DELETE http://localhost:3333/epi/37195ba2-15d6-44a8-8462-d360675a9a63
